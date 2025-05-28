@@ -1,0 +1,53 @@
+{
+    "headers": {"columnNames": [
+        "Name",
+        "Surname",
+        "Age",
+        "Phone"
+    ]},
+    "rows": [
+        {
+            "idRow": 0,
+            "params": [
+                {
+                    "dataName": "Name",
+                    "value": "Mario"
+                },
+                {
+                    "dataName": "Surname",
+                    "value": "Rossi"
+                },
+                {
+                    "dataName": "Age",
+                    "value": "18"
+                },
+                {
+                    "dataName": "Phone",
+                    "value": "+39 6652148532"
+                }
+            ]
+        },
+        {
+            "idRow": 1,
+            "params": [
+                {
+                    "dataName": "Name",
+                    "value": "Luca"
+                },
+                {
+                    "dataName": "Surname",
+                    "value": "Verdi"
+                },
+                {
+                    "dataName": "Age",
+                    "value": "26"
+                },
+                {
+                    "dataName": "Phone",
+                    "value": "+44 2235487621"
+                }
+            ]
+        }
+    ],
+    "tableName": "Customers"
+}
