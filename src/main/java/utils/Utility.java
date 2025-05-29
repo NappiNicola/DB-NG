@@ -65,10 +65,11 @@ public class Utility {
     }
 
     public static void printTableLikeTable(Table table) {
+        String tableName = table.getTableName();
         List<String> headers = table.getHeaders().getColumnName();
         List<Row> rows = table.getRows();
 
-        // Calcola la larghezza massima per ogni colonna
+        // Calcola larghezze colonne
         List<Integer> colWidths = new ArrayList<>();
         for (String header : headers) {
             colWidths.add(header.length());
@@ -84,11 +85,19 @@ public class Utility {
             }
         }
 
-        // Genera la riga di separazione
+        // Riga di separazione
         String separator = generateSeparator(colWidths);
 
-        // Stampa intestazioni
+        // ✅ Riga con nome tabella
+        int totalWidth = separator.length();
+        String tableLine = centerTextInLine(" " + tableName + " ", totalWidth);
+
+        // Stampa intestazione tabella
         System.out.println(separator);
+        System.out.println(tableLine);
+        System.out.println(separator);
+
+        // Intestazioni
         StringBuilder headerRow = new StringBuilder("|");
         for (int i = 0; i < headers.size(); i++) {
             headerRow.append(" ").append(padRight(headers.get(i), colWidths.get(i))).append(" |");
@@ -96,7 +105,7 @@ public class Utility {
         System.out.println(headerRow);
         System.out.println(separator);
 
-        // Stampa righe
+        // Righe
         for (Row row : rows) {
             StringBuilder rowLine = new StringBuilder("|");
             for (int i = 0; i < headers.size(); i++) {
@@ -104,11 +113,11 @@ public class Utility {
                 rowLine.append(" ").append(padRight(value, colWidths.get(i))).append(" |");
             }
             System.out.println(rowLine);
-            System.out.println(separator);  // ✅ Separatore dopo ogni riga
+            System.out.println(separator);
         }
     }
 
-    // Metodo per creare la riga di separazione
+    // Crea la riga di separazione
     private static String generateSeparator(List<Integer> colWidths) {
         StringBuilder line = new StringBuilder("+");
         for (int width : colWidths) {
@@ -117,10 +126,21 @@ public class Utility {
         return line.toString();
     }
 
-    // Metodo di supporto per padding
+    // Padding a destra
     private static String padRight(String text, int width) {
         return String.format("%-" + width + "s", text);
     }
 
+    // Centra testo in una riga delimitata
+    private static String centerTextInLine(String text, int lineWidth) {
+        int textLen = text.length();
+        int padding = (lineWidth - textLen - 2) / 2; // -2 per i "+" ai lati
+        StringBuilder sb = new StringBuilder("+");
+        sb.append(" ".repeat(Math.max(0, padding)));
+        sb.append(text);
+        sb.append(" ".repeat(Math.max(0, lineWidth - textLen - padding - 2)));
+        sb.append("+");
+        return sb.toString();
+    }
 
 }
