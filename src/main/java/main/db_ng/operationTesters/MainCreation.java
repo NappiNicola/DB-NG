@@ -13,13 +13,10 @@ public class MainCreation {
         table = ct.getTable();
         Utility.printFormattedJson(table.toJSON());
 
-        if(!table.getRows().isEmpty()) {
-            IOFile.saveOnFile(table.getTableName(), table.toJSON());
-            return;
-        }
+        IOFile.saveOnFile(table.getTableName(), table.toJSON());
 
-        table = ct.makeTableWithHeaders(table);
-        Utility.printFormattedJson(table.toJSON());
+//        table = ct.makeTableWithHeaders(table);
+//        Utility.printFormattedJson(table.toJSON());
 
         IOFile.saveOnFile(table.getTableName(), table.toJSON());
 
